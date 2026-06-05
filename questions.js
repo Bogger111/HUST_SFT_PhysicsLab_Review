@@ -1,5 +1,5 @@
 const QUESTION_BANK = {
-  sourceNote: "材料读取情况：七个实验的讲义 PDF 和 PPT 导出 PDF 均已提取正文；样题.pdf 为图片型扫描件，已逐页渲染查看，用于参考题型、难度和分块方式。题库按材料内容重新组织，没有照抄原题。",
+  sourceNote: "材料读取情况：七个实验的讲义 PDF 和 PPT 导出 PDF 均已提取正文，题库按材料内容重新组织，没有照抄原题。",
   modules: [
     {
       id: "spectrometer",

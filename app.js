@@ -1,4 +1,5 @@
 const moduleGrid = document.querySelector("#moduleGrid");
+const resourceGrid = document.querySelector("#resourceGrid");
 const moduleView = document.querySelector("#moduleView");
 const quizView = document.querySelector("#quizView");
 const allPracticeBtn = document.querySelector("#allPracticeBtn");
@@ -25,6 +26,37 @@ let currentIndex = 0;
 let selected = {};
 let submitted = {};
 
+const RESOURCE_FILES = {
+  spectrometer: {
+    ppt: "PPT/分光计ppt.pdf",
+    handout: "讲义/分光计.pdf",
+  },
+  millikan: {
+    ppt: "PPT/密里根ppt.pdf",
+    handout: "讲义/密里根油滴.pdf",
+  },
+  heat: {
+    ppt: "PPT/比热容和热导率ppt.pdf",
+    handout: "讲义/比热容和热导率.pdf",
+  },
+  electronics: {
+    ppt: "PPT/电子元件ppt.pdf",
+    handout: "讲义/电子元件.pdf",
+  },
+  rotation: {
+    ppt: "PPT/转动惯量和杨氏模量ppt.pdf",
+    handout: "讲义/转动惯量和杨氏模量.pdf",
+  },
+  "tuning-string": {
+    ppt: "PPT/音叉和弦ppt.pdf",
+    handout: "讲义/音叉和弦.pdf",
+  },
+  bio: {
+    ppt: "PPT/人体生物信号ppt.pdf",
+    handout: "讲义/人体生物信号.pdf",
+  },
+};
+
 function normalizeAnswer(answer) {
   return [...answer].sort().join("");
 }
@@ -33,10 +65,30 @@ function isCorrect(question, picks) {
   return normalizeAnswer(question.answer) === normalizeAnswer(picks || []);
 }
 
+function renderResources() {
+  resourceGrid.innerHTML = "";
+  QUESTION_BANK.modules.forEach((module) => {
+    const files = RESOURCE_FILES[module.id];
+    if (!files) return;
+
+    const card = document.createElement("article");
+    card.className = "resource-card";
+    card.innerHTML = `
+      <h3>${module.title}</h3>
+      <div class="resource-actions">
+        <a class="resource-link" href="${files.ppt}" target="_blank" rel="noopener">阅读 PPT</a>
+        <a class="resource-link" href="${files.handout}" target="_blank" rel="noopener">阅读讲义</a>
+      </div>
+    `;
+    resourceGrid.appendChild(card);
+  });
+}
+
 function renderHome() {
   moduleCount.textContent = QUESTION_BANK.modules.length;
   questionCount.textContent = QUESTION_BANK.modules.reduce((sum, item) => sum + item.questions.length, 0);
   sourceNote.textContent = QUESTION_BANK.sourceNote;
+  renderResources();
 
   moduleGrid.innerHTML = "";
   QUESTION_BANK.modules.forEach((module) => {
