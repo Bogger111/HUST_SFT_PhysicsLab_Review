@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>物理实验考试复习刷题系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">大学物理实验复习</p>
+        <h1>物理实验考试模拟刷题系统</h1>
+        <p class="subline">按七个实验模块练习。提交答案后才显示正确答案、逐项解析和知识点。</p>
+      </div>
+      <div class="hero-stats" aria-label="题库统计">
+        <span><strong id="moduleCount">7</strong> 个模块</span>
+        <span><strong id="questionCount">70</strong> 道题</span>
+      </div>
+    </section>
+
+    <section id="moduleView" class="module-view">
+      <div class="section-title">
+        <h2>选择实验模块</h2>
+        <button id="allPracticeBtn" class="ghost-btn" type="button">全部实验综合练习</button>
+      </div>
+      <div id="moduleGrid" class="module-grid"></div>
+      <p id="sourceNote" class="source-note"></p>
+    </section>
+
+    <section id="quizView" class="quiz-view hidden" aria-live="polite">
+      <div class="quiz-topbar">
+        <button id="backHomeBtn" class="ghost-btn" type="button">返回模块</button>
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span id="quizTitle"></span>
+            <span id="progressText"></span>
+          </div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        </div>
+      </div>
+
+      <article class="question-card">
+        <div class="question-head">
+          <span id="questionType" class="pill"></span>
+          <span id="answeredState" class="answered-state"></span>
+        </div>
+        <h2 id="questionStem"></h2>
+        <div id="optionsList" class="options-list"></div>
+        <div class="action-row">
+          <button id="prevBtn" class="ghost-btn" type="button">上一题</button>
+          <button id="submitBtn" class="primary-btn" type="button">提交答案</button>
+          <button id="nextBtn" class="ghost-btn" type="button">下一题</button>
+        </div>
+        <section id="analysisPanel" class="analysis-panel hidden"></section>
+      </article>
+
+      <section id="resultPanel" class="result-panel hidden"></section>
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
